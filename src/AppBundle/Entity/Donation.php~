@@ -33,6 +33,13 @@ class Donation
      * 
      */
     private $user;
+ 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="amount", type="integer")
+     */
+    private $amount;
 
     /**
      * Get id

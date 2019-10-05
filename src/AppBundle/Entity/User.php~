@@ -140,4 +140,13 @@ class User
     {
         return $this->donations;
     }
+    
+    public function getRecordIds()
+    {
+        $recordIds = [];
+        foreach ($this->getDonations() as $donation) {
+            $recordIds[] = $donation->getRecordId();
+        }
+        return $recordIds;
+    }
 }

@@ -33,6 +33,13 @@ class Donation
      * 
      */
     private $user;
+ 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="amount", type="integer")
+     */
+    private $amount;
 
     /**
      * Get id
@@ -90,5 +97,29 @@ class Donation
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set amount
+     *
+     * @param integer $amount
+     *
+     * @return Donation
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Get amount
+     *
+     * @return integer
+     */
+    public function getAmount()
+    {
+        return $this->amount;
     }
 }
