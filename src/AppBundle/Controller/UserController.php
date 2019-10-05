@@ -34,4 +34,23 @@ class UserController extends Controller
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }
+
+    /**
+     * Retrieve physical persons for a user
+     *
+     * @Rest\View()
+     * @Rest\Get("/api/user/{userId}")
+     */
+    public function getUserAction(Request $request)
+    {
+        $em        = $this->getDoctrine()->getManager();
+        $user      = $em->getRepository(User::class)->find($request->get('userId'));
+        $result = [
+            'name'       => $user->getName(),
+            'record_ids' => $user->getRecordIds(),
+        ];
+        $response = new JsonResponse($result);
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+    }
 }

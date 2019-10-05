@@ -99,5 +99,45 @@ class User
     {
         return $this->credit;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->donations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add donation
+     *
+     * @param \AppBundle\Entity\Donation $donation
+     *
+     * @return User
+     */
+    public function addDonation(\AppBundle\Entity\Donation $donation)
+    {
+        $this->donations[] = $donation;
+
+        return $this;
+    }
+
+    /**
+     * Remove donation
+     *
+     * @param \AppBundle\Entity\Donation $donation
+     */
+    public function removeDonation(\AppBundle\Entity\Donation $donation)
+    {
+        $this->donations->removeElement($donation);
+    }
+
+    /**
+     * Get donations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDonations()
+    {
+        return $this->donations;
+    }
+}
