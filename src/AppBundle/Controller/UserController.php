@@ -30,7 +30,7 @@ class UserController extends Controller
         $em->persist($user);
         $em->flush();
         
-        $response = new JsonResponse($user->getId());
+        $response = new JsonResponse(["user_id" => $user->getId()]);
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }
