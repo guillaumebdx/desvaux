@@ -48,6 +48,7 @@ class UserController extends Controller
         $result = [
             'name'       => $user->getName(),
             'record_ids' => $user->getRecordIds(),
+            'credit'     => $user->getCredit(),
         ];
         $response = new JsonResponse($result);
         $response->headers->set('Access-Control-Allow-Origin', '*');
