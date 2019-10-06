@@ -24,13 +24,16 @@ class DonationController extends Controller
      */
     public function newDonationAction(Request $request, ParamFetcherInterface $paramFetcher)
     {
+        $amount   = $paramFetcher->get('amount');
         $em       = $this->getDoctrine()->getManager();
         $user     = $em->getRepository(User::class)->find($paramFetcher->get('user_id'));
         $donation = new Donation();
         $donation->setRecordId($paramFetcher->get('record_id'));
         $donation->setUser($user);
-        $donation->setAmount($paramFetcher->get('amount'));
+        $donation->setAmount($amount);
+        $user->setCredit($user->getCredit() - $amount);
         $em->persist($donation);
+        $em->persist($user);
         $em->flush();
         $response = new JsonResponse('done');
         $response->headers->set('Access-Control-Allow-Origin', '*');
